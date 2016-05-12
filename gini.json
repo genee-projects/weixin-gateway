@@ -1,0 +1,14 @@
+{
+    "id": "weixin-gateway",
+    "name": "微信网关",
+    "description": "用于各个应用进行微信与Gapper的身份绑定",
+    "version": "0.1.0",
+    "dependencies": {
+        "cache": "*"
+    },
+    "composer": {
+        "require": {
+            "iamfat/wechat": "dev-master"
+        }
+    }
+}
