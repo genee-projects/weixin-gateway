@@ -7,7 +7,7 @@ use \Gini\Controller\API;
 class Wechat extends API {
 
     public function actionGetUnionId($token) {
-        return \Gini\Cache::of('wechat')->get('wechat-unionid['.$token.']');
+        return \Gini\Cache::of('wechat')->get('unionid['.$token.']');
     }
 
 }
