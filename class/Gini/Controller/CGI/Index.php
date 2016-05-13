@@ -17,7 +17,7 @@ class Index extends CGI {
     public function __index() {
         $unionId = $this->getWechatId();
         $form = $this->form();
-        if ($form['wx-token'] && $form['wx-redirect']) {
+        if ($unionId && $form['wx-token'] && $form['wx-redirect']) {
             $token = $form['wx-token'];
             \Gini\Cache::of('wechat')->set('unionid['.$token.']', $unionId, 300);
             $this->redirect($form['wx-redirect'], ['wx-token' => $token]);
