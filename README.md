@@ -35,7 +35,7 @@
     }
     ```
 2. 获取JS-SDK调用权限
-	
+
 	```php
 	<?php
 		$conf = \Gini\Config::get('wechat.gateway');
@@ -63,7 +63,27 @@
         });
 	});
 	</script>
-	```
+    ```
+
+3. 获取当前登录微信用户
+    ```php
+    <?php
+    $conf = \Gini\Config::get('wechat.gateway');
+    $rpc = new \Gini\RPC($conf['api_url']);
+    $rpc->Wechat->authorize($conf['client_id'], $conf['client_secret']);
+    $rpc->Wechat->sendTemplateMessage('OPENID', 'TEMPLATEID', [
+        'url' => 'path/to/your/url',
+        'topcolor' => '#FF0000',
+        'data' => [
+            'user' => [
+                'value' => '张三',
+                'color' => '#173177',
+            ]
+        ]
+    ]);
+    ?>
+    ```    
+
 
 ### 如何安装
 1. 配置到 gini 环境

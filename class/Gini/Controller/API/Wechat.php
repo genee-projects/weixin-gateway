@@ -49,4 +49,11 @@ class Wechat extends API {
         return $js->getSignPackage($url);
     }
 
+    // 发送模板消息
+    public function actionSendTemplateMessage($openId, $templateId, $data) {
+        $conf = \Gini\Config::get('wechat');
+        $app = new \Wechat\App($conf['app_id'], $conf['app_secret']);
+        return $app->sendTemplateMessage($openId, $templateId, $data);
+    }
+
 }
