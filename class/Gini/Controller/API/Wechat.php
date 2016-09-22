@@ -20,7 +20,13 @@ class Wechat extends API {
     }
 
     public function actionGetUnionId($token) {
-        return \Gini\Cache::of('wechat')->get('unionid['.$token.']');
+        $userInfo = \Gini\Cache::of('wechat')->get('wx-user['.$token.']');
+        return $userInfo['unionid'];
+    }
+
+    public function actionGetUserInfo($token) {
+        $userInfo = \Gini\Cache::of('wechat')->get('wx-user['.$token.']');
+        return $userInfo;
     }
 
     public function actionGetAccessToken() {
