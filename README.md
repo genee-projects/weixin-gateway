@@ -74,11 +74,9 @@
     $rpc->Wechat->sendTemplateMessage('OPENID', 'TEMPLATEID', [
         'url' => 'path/to/your/url',
         'topcolor' => '#FF0000',
-        'data' => [
-            'user' => [
-                'value' => '张三',
-                'color' => '#173177',
-            ]
+        'user' => [
+            'value' => '张三',
+            'color' => '#173177',
         ]
     ]);
     ?>
