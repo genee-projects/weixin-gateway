@@ -62,4 +62,27 @@ class Wechat extends API {
         return $app->sendTemplateMessage($openId, $templateId, $data);
     }
 
+    public function actionCreateAppClient($clientId, $clientSecret) {
+        $confs     = \Gini\Config::Get('app');
+        $env       = $_SERVER['GINI_ENV'];
+        $base_path = APP_PATH.'/'.RAW_DIR.'/config/';
+        $file      = $base_path.'@'.$env.'/app.yml';
+        if (!file_exists($file)) {
+            $file = $base_path.'app.yml';
+        }
+        if (array_key_exists($clientId, (array)$confs['clients'])) {
+            return false;
+        }
+        $confs['clients'][$clientId] = $clientSecret;
+        $yaml_content                = yaml_emit($confs);
+        file_put_contents($file, $yaml_content);
+        \Gini\App\Cache::setup($env);
+        $new_confs = \Gini\Config::Get('app');
+        if ($new_confs == $confs) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
