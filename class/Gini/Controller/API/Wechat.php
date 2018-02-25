@@ -63,6 +63,8 @@ class Wechat extends API {
     }
 
     public function actionCreateAppClient($clientId, $clientSecret) {
+        if (!$this->isAuthorized()) return false;
+
         $confs     = \Gini\Config::Get('app');
         $env       = $_SERVER['GINI_ENV'];
         $base_path = APP_PATH.'/'.RAW_DIR.'/config/';
